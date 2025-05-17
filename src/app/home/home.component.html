@@ -1,0 +1,30 @@
+<div class="min-h-screen flex items-center justify-center">
+  <div class="text-center">
+    <h1 class="text-white font-semibold text-4xl leading-tight mb-12">
+      Coding Challenge<br />Playground
+    </h1>
+    <p class="text-white text-2xl mb-10">Choose a Level to Start</p>
+    <div class="flex flex-col items-center space-y-2">
+      <button
+        [routerLink]="['/beginner']"
+        class="bg-green-500 text-white text-xl py-3 rounded-sm w-60 mb-5 hover:cursor-pointer hover:bg-green-600"
+      >
+        Beginner
+      </button>
+
+      <button
+        [routerLink]="['/intermediate']"
+        class="bg-yellow-500 text-white text-xl py-3 rounded-sm w-60 mb-5 hover:cursor-pointer hover:bg-yellow-600"
+      >
+        Intermediate
+      </button>
+
+      <button
+        [routerLink]="['/advanced']"
+        class="bg-red-500 text-white text-xl py-3 rounded-sm w-60 hover:cursor-pointer hover:bg-red-600"
+      >
+        Advanced
+      </button>
+    </div>
+  </div>
+</div>

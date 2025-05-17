@@ -1,0 +1,86 @@
+<div class="min-h-screen flex items-center justify-center text-white">
+  <div
+    class="text-center p-6 rounded-lg shadow-lg bg-[#2c2c2c] w-full max-w-md"
+  >
+    <h1 class="text-2xl font-bold mb-6">Create Your Profile</h1>
+
+    <input
+      [(ngModel)]="userName"
+      placeholder="Enter your name"
+      class="w-full mb-4 px-4 py-4 text-white rounded-md bg-[#1f1f1f]"
+      type="text"
+    />
+
+    <div class="text-left mb-4">
+      <label class="block mb-2 font-semibold">Coding Confidence:</label>
+      <select
+        [(ngModel)]="response.codingConfidence"
+        class="w-full px-4 py-4 rounded-md text-white bg-[#1f1f1f]"
+      >
+        <option value="none">None</option>
+        <option value="some">Some</option>
+        <option value="comfortable">Comfortable</option>
+        <option value="confident">Confident</option>
+      </select>
+    </div>
+
+    <div class="text-left mb-4">
+      <label class="block mb-2 font-semibold">Repetition Preference:</label>
+      <select
+        [(ngModel)]="response.repetitionPreference"
+        class="w-full px-4 py-4 rounded-md text-white bg-[#1f1f1f]"
+      >
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+        <option value="auto">Auto</option>
+      </select>
+    </div>
+
+    <div class="text-left mb-4">
+      <label class="block mb-2 font-semibold">Usage Frequency:</label>
+      <select
+        [(ngModel)]="response.usageFrequency"
+        class="w-full px-4 py-4 rounded-md text-white bg-[#1f1f1f]"
+      >
+        <option value="daily">Daily</option>
+        <option value="weekly">Weekly</option>
+        <option value="occasional">Occasional</option>
+        <option value="unsure">Unsure</option>
+      </select>
+    </div>
+
+    <div class="text-left mb-4">
+      <label class="block mb-2 font-semibold">Learning Goal:</label>
+      <select
+        [(ngModel)]="response.learningGoal"
+        class="w-full px-4 py-4 rounded-md text-white bg-[#1f1f1f]"
+      >
+        <option value="memorize">Memorize</option>
+        <option value="apply">Apply</option>
+        <option value="problemSolving">Problem Solving</option>
+        <option value="all">All</option>
+      </select>
+    </div>
+
+    <div class="text-left mb-6">
+      <label class="block mb-2 font-semibold">Progression Preference:</label>
+      <select
+        [(ngModel)]="response.progressionPreference"
+        class="w-full px-4 py-4 rounded-md text-white bg-[#1f1f1f]"
+      >
+        <option value="fixed">Fixed</option>
+        <option value="accuracy">Accuracy</option>
+        <option value="auto">Auto</option>
+        <option value="manual">Manual</option>
+      </select>
+    </div>
+
+    <button
+      (click)="submitQuestionnaire()"
+      class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md"
+    >
+      Create Profile
+    </button>
+  </div>
+</div>

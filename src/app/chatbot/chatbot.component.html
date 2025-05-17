@@ -1,0 +1,121 @@
+<!-- Floating Action Button (visible only when chatbot is hidden) -->
+<button
+  *ngIf="!isChatbotVisible"
+  aria-label="Floating action button with sparkle icon"
+  class="fixed bottom-10 right-10 w-16 h-16 rounded-full flex items-center justify-center text-gray-400 shadow-lg overflow-hidden hover:cursor-pointer z-50 transition-transform duration-300 hover:rotate-45 hover:scale-110"
+  (click)="isChatbotVisible = true"
+>
+  <img
+    alt="chatbot"
+    class="absolute inset-0 w-full h-full object-cover rounded-full"
+    height="48"
+    src="https://storage.googleapis.com/a1aa/image/4ecee296-3341-40e1-f7dd-2f80ea2b4dfc.jpg"
+    width="48"
+  />
+</button>
+
+<!-- Chatbot Container (visible only when chatbot is shown) -->
+<div
+  *ngIf="isChatbotVisible"
+  class="fixed bottom-10 right-10 max-w-md w-full bg-[#2c2c2c] rounded-xl shadow-xl p-6 h-[80vh] flex flex-col z-50 transition-all duration-500 ease-out transform opacity-0 translate-y-4"
+  [class.opacity-100]="isChatbotVisible"
+  [class.translate-y-0]="isChatbotVisible"
+>
+  <!-- Chatbot Header with Close and Trash Buttons -->
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl text-gray-300 font-bold">AI Learning Assistant</h2>
+    <div class="flex items-center space-x-2">
+      <!-- Trash Button -->
+      <button
+        (click)="clearMessages()"
+        class="text-gray-300 hover:text-gray-500 hover:scale-110 hover:cursor-pointer mr-4"
+        aria-label="Clear chat messages"
+      >
+        <!-- Heroicon Trash -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+          />
+        </svg>
+      </button>
+
+      <!-- Close Button -->
+      <button
+        (click)="isChatbotVisible = false"
+        class="text-gray-300 hover:text-gray-500 hover:scale-110 hover:cursor-pointer"
+        aria-label="Close chatbot"
+      >
+        <!-- Heroicon X -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-7 w-7"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Chat Messages -->
+  <div class="flex-1 overflow-y-auto space-y-2 mb-4">
+    <div *ngFor="let msg of messages">
+      <div
+        [ngClass]="
+          msg.sender === 'user'
+            ? 'bg-blue-500 text-white ml-auto'
+            : 'bg-gray-300 mr-auto'
+        "
+        class="p-2 rounded-lg w-fit max-w-[75%]"
+      >
+        {{ msg.text }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Message Input Form -->
+  <form (ngSubmit)="sendMessage()" class="relative w-full">
+    <input
+      [(ngModel)]="userInput"
+      name="msg"
+      required
+      placeholder="Type a message"
+      class="w-full border px-4 py-3 rounded-lg pr-12 text-gray-300"
+    />
+    <button
+      type="submit"
+      class="absolute top-1/2 right-3 -translate-y-1/2 text-white p-2 rounded-full hover:text-blue-500 hover:scale-110 flex items-center justify-center hover:cursor-pointer"
+      aria-label="Send message"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
+        />
+      </svg>
+    </button>
+  </form>
+</div>
