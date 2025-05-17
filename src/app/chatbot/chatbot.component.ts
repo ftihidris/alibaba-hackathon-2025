@@ -76,10 +76,30 @@ export class ChatbotComponent implements OnInit, OnDestroy {
       });
   }
 
-  @HostListener('document:keydown.enter', ['$event'])
-  onEnterKeyPress(event: KeyboardEvent): void {
-    if (this.userInput.trim()) {
-      this.sendMessage();
-    }
-  }
+  // @HostListener('document:keydown.enter', ['$event'])
+  // onEnterKeyPress(event: KeyboardEvent): void {
+  //   // Only send if Enter is pressed without Shift
+  //   if (!event.shiftKey && this.userInput.trim()) {
+  //     event.preventDefault(); // Prevent new line
+  //     this.sendMessage();
+  //   }
+  // }
+
+// handleKeyDown(event: KeyboardEvent): void {
+//   if (event.key === 'Enter') {
+//     if (event.shiftKey) {
+//       // Let Shift + Enter create a newline (if using textarea in future)
+//       return;
+//     }
+
+//     // Prevent default Enter behavior (like form submission)
+//     event.preventDefault();
+
+//     // Only send if there's actual input
+//     if (this.userInput.trim()) {
+//       this.sendMessage();
+//     }
+//   }
+// }
+
 }

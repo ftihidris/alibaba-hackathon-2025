@@ -90,13 +90,12 @@
 
   <!-- Message Input Form -->
   <form (ngSubmit)="sendMessage()" class="relative w-full">
-    <input
-      [(ngModel)]="userInput"
-      name="msg"
-      required
-      placeholder="Type a message"
-      class="w-full border px-4 py-3 rounded-lg pr-12 text-gray-300"
-    />
+
+    <textarea [(ngModel)]="userInput"
+name="msg"
+required
+placeholder="Type a message"
+class="w-full border px-4 py-3 rounded-lg  text-gray-300"></textarea>
     <button
       type="submit"
       class="absolute top-1/2 right-3 -translate-y-1/2 text-white p-2 rounded-full hover:text-blue-500 hover:scale-110 flex items-center justify-center hover:cursor-pointer"
