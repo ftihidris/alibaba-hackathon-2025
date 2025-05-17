@@ -7,50 +7,50 @@
     </div>
 
     <h2 class="text-white font-semibold text-lg mt-8 mb-2">Instruction</h2>
-    <p class="text-xl text-white mb-8 text-center">Rewrite code snippet</p>
+    <p class="text-xl text-white mb-6 text-center">{{ instruction }}</p>
 
-    <div class="flex justify-between text-lgmb-2 px-1 mb-5">
-      <div class="text-white">Prime Number Check</div>
-      <div class="text-white">Points: 7</div>
+    <div class="flex justify-between text-white text-lg mb-4">
+      <div>Question {{ currentIndex + 1 }} of {{ questions.length }}</div>
+      <div>Points: {{ points }}</div>
     </div>
 
+    <div class="text-white text-xl font-semibold mb-4">
+      {{ questionTitle }}
+    </div>
+
+    <label for="language" class="text-white text-sm mb-2 block">Choose Language:</label>
     <select
-      aria-label="Select language"
-      class="mb-4 text-md rounded px-2 py-1 cursor-pointer text-white"
+      id="language"
+      [(ngModel)]="selectedLanguage"
+      class="mb-4 text-md rounded px-2 py-1 bg-[#1f1f1f] text-white border border-gray-600"
     >
-      <option>Swift</option>
+      <option value="swift">Swift</option>
+      <option value="java">Java</option>
+      <option value="cpp">C++</option>
+      <option value="python">Python</option>
     </select>
-    <!--example question-->
+
+    <!-- Code Snippet Display -->
     <pre
       class="bg-[#2c2c2c] text-white rounded-md p-4 text-md font-mono whitespace-pre-wrap"
       aria-label="Code snippet"
-    >
-func isPrime(_ num: Int) -&gt; Bool {{ "{" }}
-    if num &lt; 2 {{ "{" }}
-        return false
-    {{ "}" }}
-    for i in 2 ..&lt; Int(Double(num).squareRoot()) + 1 {{ "{" }}
-        if num % i == 0 {{ "{" }}
-            return false
-        {{ "}" }}
-    {{ "}" }}
-    return true
-    {{ "}" }}</pre
-    >
+      id="code-display"
+      [textContent]="codeSnippet"
+    ></pre>
 
-    <!--monaco editor
-
-    <div style="width: 50%;">
-    <h2 class="text-white font-semibold text-lg mb-2">Instruction</h2>
-    <div #editorContainer style="height: 500px; border: 1px solid #ccc;"></div>
-    </div> 
--->
+    <!-- User Input Area -->
     <textarea
       id="userCode"
+      [(ngModel)]="userCode"
       rows="6"
       class="w-full mt-10 mb-8 bg-[#1f1f1f] border border-gray-600 rounded-md p-3 text-md text-white resize-none placeholder:text-gray-500"
-      placeholder=""
+      placeholder="Write your version of the solution here..."
     ></textarea>
+
+    <!-- Hint Section -->
+    <div class="text-sm text-gray-400 mb-6">
+      <strong>Hint:</strong> {{ hint }}
+    </div>
 
     <div class="flex justify-between">
       <button
