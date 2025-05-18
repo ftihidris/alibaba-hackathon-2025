@@ -52,11 +52,52 @@ export class QwenApiService {
         {
           role: 'system',
           content:
-            'Please give me the answer in plain text without a special character.',
+            'Please give me the answer in plain text without special characters.',
         },
         {
           role: 'user',
           content: userMessage,
+        },
+      ],
+    };
+
+    return this.http.post(this.apiUrl, body, { headers });
+  }
+
+  validateCode(prompt: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.apiKey}`,
+      'Content-Type': 'application/json',
+    });
+
+    const body = {
+      model: 'qwen-max',
+      messages: [
+        { role: 'system', content: 'You are an expert programming assistant.' },
+        { role: 'user', content: prompt },
+      ],
+    };
+
+    return this.http.post(this.apiUrl, body, { headers });
+  }
+
+  blankCode(prompt: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.apiKey}`,
+      'Content-Type': 'application/json',
+    });
+
+    const body = {
+      model: 'qwen-plus',
+      messages: [
+        {
+          role: 'system',
+          content:
+            'You are a coding assistant. Replace 3–5 keywords in the given code with ___ to make a fill-in-the-blank exercise.',
+        },
+        {
+          role: 'user',
+          content: prompt,
         },
       ],
     };

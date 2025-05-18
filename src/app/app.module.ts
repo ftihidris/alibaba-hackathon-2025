@@ -13,6 +13,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { QwenApiService } from './services/qwen-api.service';
 import { ProfileGuard } from './guards/profile.guard';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
+import { AdvancedComponent } from './advanced/advanced.component';
+import { IntermediateComponent } from './intermediate/intermediate.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +29,9 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
     RouterModule,
 
     FormsModule,
-
+    AdvancedComponent,
     BeginnerComponent,
+    IntermediateComponent,
   ],
   providers: [provideHttpClient(), QwenApiService, ProfileGuard],
   bootstrap: [AppComponent],

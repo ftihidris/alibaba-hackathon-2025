@@ -4,6 +4,8 @@ import { HomeComponent } from './home/home.component';
 import { BeginnerComponent } from './beginner/beginner.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { ProfileGuard } from './guards/profile.guard';
+import { AdvancedComponent } from './advanced/advanced.component';
+import { IntermediateComponent } from './intermediate/intermediate.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,15 @@ const routes: Routes = [
   {
     path: 'beginner',
     component: BeginnerComponent,
-    canActivate: [ProfileGuard],
+    // canActivate: [ProfileGuard],
+  },
+  {
+    path: 'advanced',
+    component: AdvancedComponent,
+  },
+  {
+    path: 'intermediate',
+    component: IntermediateComponent,
   },
   {
     path: 'profile',

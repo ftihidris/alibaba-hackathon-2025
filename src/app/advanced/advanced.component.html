@@ -1,6 +1,6 @@
-<div class="min-h-screen flex justify-center pt-40">
+<div class="min-h-screen flex justify-center pt-20">
   <div class="w-full max-w-3xl">
-    <div class="flex justify-center text-white text-2xl mb-8">Beginner</div>
+    <div class="flex justify-center text-white text-2xl mb-8">Advanced</div>
 
     <h2 class="text-white font-semibold text-lg mt-8 mb-2">Instruction</h2>
     <p class="text-xl text-white mb-6 text-center">{{ instruction }}</p>
@@ -8,9 +8,12 @@
     <div class="flex justify-between text-white text-lg mb-4">
       <div>Question {{ currentIndex + 1 }} of {{ questions.length }}</div>
       <div>Points: {{ points }}</div>
+      <div>Time Left: {{ formatTime(timeLeft) }}</div>
     </div>
 
-    <div class="text-white text-xl font-semibold mb-4">{{ questionTitle }}</div>
+    <div class="text-white text-xl font-semibold mb-4">
+      {{ questionTitle }}
+    </div>
 
     <label for="language" class="text-white text-sm mb-2 block"
       >Choose Language:</label
@@ -26,24 +29,21 @@
       <option value="python">Python</option>
     </select>
 
-    <pre
-      class="bg-[#2c2c2c] text-white rounded-md p-4 text-md font-mono whitespace-pre-wrap"
-      aria-label="Code snippet"
-      id="code-display"
-      [textContent]="codeSnippet"
-    ></pre>
-
     <textarea
       id="userCode"
       [(ngModel)]="userCode"
-      rows="6"
+      rows="8"
       class="w-full mt-10 mb-8 bg-[#1f1f1f] border border-gray-600 rounded-md p-3 text-md text-white resize-none placeholder:text-gray-500"
-      placeholder="Write your version of the solution here..."
-      [readonly]="isSubmitted"
+      placeholder="Write your full solution here..."
     ></textarea>
 
     <div class="text-sm text-gray-400 mb-6">
       <strong>Hint:</strong> {{ hint }}
+    </div>
+
+    <div *ngIf="isSubmitted" class="bg-gray-800 text-white p-4 rounded mt-4">
+      <strong>AI Feedback:</strong>
+      <p class="mt-2" [innerHTML]="feedback | linebreaks"></p>
     </div>
 
     <div class="flex justify-between items-center">
@@ -68,13 +68,6 @@
       >
         {{ isSubmitted ? "Next" : "Submit" }}
       </button>
-    </div>
-
-    <div *ngIf="isCorrect === true" class="text-green-400 mt-4 font-semibold">
-      ✅ Your answer is correct.
-    </div>
-    <div *ngIf="isCorrect === false" class="text-red-400 mt-4 font-semibold">
-      ❌ Your answer is incorrect.
     </div>
   </div>
 </div>
