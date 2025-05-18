@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: 'beginner',
     component: BeginnerComponent,
-    // canActivate: [ProfileGuard],
+    canActivate: [ProfileGuard],
   },
   {
     path: 'advanced',
